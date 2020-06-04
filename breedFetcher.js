@@ -2,17 +2,17 @@ const request = require('./node_modules/request');
 const arg = process.argv
 //allows you to search it through the terminal. Automatically sets the breed name as breedName
 const breedName = arg[2]
-const breedFetcher = (breedName, callback) => {
+const breedFetcher = (breedName) => {
   //Website is hardcoded as it is a constant, only thing that changes is the breed name
   const websiteUrl = `https://api.thecatapi.com/v1/breeds/search?q=${breedName}`
   request(websiteUrl, (error, response, body) => {
     //If an error occurs, run an error message
     if (error) {
-      callback (`Error, failure to search. \n${error}\nPlease try again.`)
+      (`Error, failure to search. \n${error}\nPlease try again.`)
     }
     //Converts string into an object
     const data = JSON.parse(body);
-    //checks if the body was able to be parsed, and successfully turned into an object within an array.
+    //checks if the body was able to be parsed, and successfully turned into an object within an
     if (data[0]) {
       // Prints out only the description of the breed"
       console.log(data[0].description);
